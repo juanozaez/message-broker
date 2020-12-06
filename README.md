@@ -18,20 +18,20 @@ It can be run using different message brokers
 ## Test
 - Post to localhost:8080/users , body: username
 - Get to localhost:8081/notifications, response will be the username
-
-
-                   +-------------------+
-                   |                   |
-                   |  Message-broker   |
-                   |                   |
-                   +------+-----+------+
-                          ^     |
-              +-----------+     +------------+
-              |     Publish     Consume      |
-              |                              |
-              |                              v
-    +---------+------------+       +---------+------------+
-    |                      |       |                      |
-    |     User-service     |       | Notification-service |
-    |                      |       |                      |
-    +----------------------+       +----------------------+
+  
+  
+                     +-------------------+
+                     |                   |
+                     |  Message-broker   |
+                     |                   |
+                     +------+-----+------+
+                            ^     |
+                +-----------+     +------------+
+                |     Publish     Consume      |
+                |                              |
+                |                              v
+      +---------+------------+       +---------+------------+
+      |                      |       |                      |
+      |     User-service     |       | Notification-service |
+      |                      |       |                      |
+      +----------------------+       +----------------------+
