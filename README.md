@@ -3,22 +3,6 @@
 Project consisting of several microservices communicating using an asynchronous event bus
 
 ## Architecture
-               
-               +-------------------+
-               |                   |
-               |  Message-broker   |
-               |                   |
-               +------+-----+------+
-                      ^     |
-          +-----------+     +------------+
-          |     Publish     Consume      |
-          |                              |
-          |                              v
-+---------+------------+      +---------+------------+
-|                      |      |                      |
-|     User-service     |      | Notification-service |
-|                      |      |                      |
-+----------------------+      +----------------------+
 
 ## Implementations
 It can be run using different message brokers
@@ -32,3 +16,22 @@ It can be run using different message brokers
   - Run NotificationApplication.kt
     
 ## Test
+- Post to localhost:8080/users , body: username
+- Get to localhost:8081/notifications, response will be the username
+
+
+                   +-------------------+
+                   |                   |
+                   |  Message-broker   |
+                   |                   |
+                   +------+-----+------+
+                          ^     |
+              +-----------+     +------------+
+              |     Publish     Consume      |
+              |                              |
+              |                              v
+    +---------+------------+       +---------+------------+
+    |                      |       |                      |
+    |     User-service     |       | Notification-service |
+    |                      |       |                      |
+    +----------------------+       +----------------------+
