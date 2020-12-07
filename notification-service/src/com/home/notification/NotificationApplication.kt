@@ -1,5 +1,8 @@
 package com.home.notification
 
+import com.home.rabbitmq.DomainEvent
+import com.home.rabbitmq.DomainSubscriber
+import com.home.rabbitmq.DomainSubscriberRegistry
 import com.home.rabbitmq.RabbitConsumer
 import io.ktor.application.*
 import io.ktor.response.*
@@ -13,11 +16,19 @@ private val notifications = mutableListOf<String>()
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
     routing {
-        get("/notifications"){
-            call.respondText (notifications.toString())
+        get("/notifications") {
+            call.respondText(notifications.toString())
         }
     }
+    DomainSubscriberRegistry.register(UserCreatedEventSubscriber())
+    RabbitConsumer().registerSubscribers()
+}
 
-    RabbitConsumer().waitForMessages("sample-queue") { _, message -> notifications.add(message) }
+class UserCreatedEventSubscriber : DomainSubscriber<UserCreatedEvent>() {
+    override fun on(event: DomainEvent) {
+        notifications.add(event.name())
+    }
+
+    override fun queue() = "user.created"
 }
 
