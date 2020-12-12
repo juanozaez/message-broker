@@ -1,6 +1,5 @@
 package com.home.notification
 
-import com.home.rabbitmq.DomainEvent
 import com.home.rabbitmq.DomainSubscriber
 import com.home.rabbitmq.DomainSubscriberRegistry
 import com.home.rabbitmq.RabbitConsumer
@@ -25,10 +24,11 @@ fun Application.module(testing: Boolean = false) {
 }
 
 class UserCreatedEventSubscriber : DomainSubscriber<UserCreatedEvent>() {
-    override fun on(event: DomainEvent) {
-        notifications.add(event.name())
+    override fun on(event: Any) {
+        notifications.add((event as UserCreatedEvent).name)
     }
 
     override fun queue() = "user.created"
+    override fun genericClass() = UserCreatedEvent::class.java
 }
 

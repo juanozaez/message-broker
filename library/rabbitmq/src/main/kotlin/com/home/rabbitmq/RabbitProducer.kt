@@ -1,16 +1,16 @@
 package com.home.rabbitmq
 
-import com.beust.klaxon.Klaxon
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.rabbitmq.client.ConnectionFactory
 
 class RabbitProducer: DomainEventPublisher {
     private val connection = ConnectionFactory().newConnection("amqp://guest:guest@localhost:5672/")
     private val channel = connection.createChannel()
-    private val klaxon = Klaxon()
+    private val mappper = jacksonObjectMapper()
 
     override fun publish(event: DomainEvent) {
         createQueue(event.name())
-        publishMessage(klaxon.toJsonString(event), event.name())
+        publishMessage(mappper.writeValueAsString(event), event.name())
     }
 
     private fun createQueue(queueName: String){
