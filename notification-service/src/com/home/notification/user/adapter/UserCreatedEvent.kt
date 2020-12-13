@@ -1,4 +1,4 @@
-package com.home.user
+package com.home.notification.user.adapter
 
 import com.home.rabbitmq.DomainEvent
 
