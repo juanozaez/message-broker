@@ -4,29 +4,28 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.rabbitmq.client.CancelCallback
 import com.rabbitmq.client.ConnectionFactory
 import com.rabbitmq.client.DeliverCallback
+import kotlin.reflect.KClass
 
 class RabbitConsumer {
     private val connection = ConnectionFactory().newConnection("amqp://guest:guest@localhost:5672/")
     private val channel = connection.createChannel()
-    private val mappper = jacksonObjectMapper()
+    private val mapper = jacksonObjectMapper()
 
-    fun waitForMessages(classs: Class<out DomainEvent>, queueName: String, callback: (DomainEvent) -> Unit) {
-        val deliverCallback = DeliverCallback {
+    fun registerSubscribers() {
+        DomainSubscriberRegistry.subscribers.forEach { subscriber ->
+            waitForMessages(subscriber.subscribedEvent(), subscriber.name()) {
+                subscriber.onEvent(it)
+            }
+        }
+    }
 
-                _, message ->
-            callback(mappper.readValue(message.body.decodeToString(), classs))
+    private fun waitForMessages(kclass: KClass<out DomainEvent>, queueName: String, callback: (DomainEvent) -> Unit) {
+        val deliverCallback = DeliverCallback { _, message ->
+            callback(mapper.readValue(message.body.decodeToString(), kclass.java))
         }
         val cancelCallback = CancelCallback { consumerTag ->
             println("Cancel $consumerTag")
         }
         channel.basicConsume(queueName, true, deliverCallback, cancelCallback)
-    }
-
-    fun registerSubscribers() {
-        DomainSubscriberRegistry.subscribers.forEach { subscriber ->
-            waitForMessages(subscriber.genericClass(), subscriber.queue()) {
-                subscriber.on(it)
-            }
-        }
     }
 }
