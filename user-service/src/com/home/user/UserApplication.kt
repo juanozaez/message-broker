@@ -1,4 +1,4 @@
-package com.home.notification
+package com.home.user
 
 import com.home.rabbitmq.DomainEventPublisher
 import com.home.rabbitmq.RabbitProducer
@@ -12,7 +12,7 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 private val producer: DomainEventPublisher = RabbitProducer()
 
-@Suppress("unused") // Referenced in application.conf
+@Suppress("unused")
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
     routing {

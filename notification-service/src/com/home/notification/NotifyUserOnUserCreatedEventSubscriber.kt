@@ -2,8 +2,9 @@ package com.home.notification
 
 import com.home.rabbitmq.DomainEvent
 import com.home.rabbitmq.DomainSubscriber
+import com.home.user.UserCreatedEvent
 
-class UserCreatedEventSubscriber : DomainSubscriber<UserCreatedEvent>() {
+class NotifyUserOnUserCreatedEventSubscriber : DomainSubscriber<UserCreatedEvent>() {
     override fun on(event: UserCreatedEvent) {
         println("User notified: ${event.name}")
     }
