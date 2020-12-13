@@ -1,12 +1,13 @@
-package com.home.notification
+package com.home.notification.user.adapter
 
+import com.home.notification.user.domain.UserNotifier
 import com.home.rabbitmq.DomainEvent
 import com.home.rabbitmq.DomainSubscriber
 import com.home.user.UserCreatedEvent
 
-class NotifyUserOnUserCreatedEventSubscriber : DomainSubscriber<UserCreatedEvent>() {
+class NotifyUserOnUserCreatedEventSubscriber(private val userNotifier: UserNotifier) : DomainSubscriber<UserCreatedEvent>() {
     override fun on(event: UserCreatedEvent) {
-        println("User notified: ${event.name}")
+        userNotifier.notify(event.name)
     }
 
     override fun name() = "user.created"
