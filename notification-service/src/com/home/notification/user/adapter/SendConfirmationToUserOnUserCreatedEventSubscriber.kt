@@ -2,8 +2,8 @@ package com.home.notification.user.adapter
 
 import com.home.notification.user.domain.ConfirmationToUserSender
 import com.home.notification.user.domain.UserNotifier
-import com.home.rabbitmq.DomainEvent
-import com.home.rabbitmq.DomainSubscriber
+import com.home.messagebroker.DomainEvent
+import com.home.messagebroker.DomainSubscriber
 
 class SendConfirmationToUserOnUserCreatedEventSubscriber(private val confirmationSender: ConfirmationToUserSender) : DomainSubscriber<UserCreatedEvent>() {
     override fun on(event: UserCreatedEvent) {

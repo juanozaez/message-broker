@@ -1,4 +1,4 @@
-package com.home.rabbitmq
+package com.home.messagebroker
 
 object DomainSubscriberRegistry{
 

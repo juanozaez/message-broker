@@ -1,6 +1,8 @@
 package com.home.rabbitmq
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.home.messagebroker.DomainEvent
+import com.home.messagebroker.DomainSubscriberRegistry
 import com.rabbitmq.client.CancelCallback
 import com.rabbitmq.client.ConnectionFactory
 import com.rabbitmq.client.DeliverCallback

@@ -1,6 +1,8 @@
 package com.home.rabbitmq
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.home.messagebroker.DomainEvent
+import com.home.messagebroker.DomainEventPublisher
 import com.rabbitmq.client.ConnectionFactory
 
 class RabbitProducer: DomainEventPublisher {

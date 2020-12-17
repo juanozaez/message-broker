@@ -1,6 +1,6 @@
 package com.home.user
 
-import com.home.rabbitmq.DomainEventPublisher
+import com.home.messagebroker.DomainEventPublisher
 import com.home.rabbitmq.RabbitProducer
 import io.ktor.application.*
 import io.ktor.http.*
