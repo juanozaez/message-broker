@@ -1,4 +1,4 @@
-rootProject.name = "rabbit-broker"
+rootProject.name = "message-broker"
 
 include("user-service")
 include("notification-service")
