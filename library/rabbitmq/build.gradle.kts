@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation("io.github.microutils:kotlin-logging:1.7.8")
-    implementation ("com.rabbitmq:amqp-client:5.9.0")
+    implementation("com.rabbitmq:amqp-client:5.9.0")
     implementation(project(":library:message-broker"))
     implementation("com.fasterxml.jackson.core:jackson-databind:2.12.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0")

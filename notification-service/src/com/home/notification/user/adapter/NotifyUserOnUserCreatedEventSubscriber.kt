@@ -1,10 +1,11 @@
 package com.home.notification.user.adapter
 
-import com.home.notification.user.domain.UserNotifier
 import com.home.messagebroker.DomainEvent
 import com.home.messagebroker.DomainSubscriber
+import com.home.notification.user.domain.UserNotifier
 
-class NotifyUserOnUserCreatedEventSubscriber(private val userNotifier: UserNotifier) : DomainSubscriber<UserCreatedEvent>() {
+class NotifyUserOnUserCreatedEventSubscriber(private val userNotifier: UserNotifier) :
+    DomainSubscriber<UserCreatedEvent>() {
     override fun on(event: UserCreatedEvent) {
         userNotifier.notify(event.name)
     }

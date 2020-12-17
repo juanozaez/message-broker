@@ -1,10 +1,10 @@
 package com.home.messagebroker
 
-object DomainSubscriberRegistry{
+object DomainSubscriberRegistry {
 
     val subscribers = mutableListOf<DomainSubscriber<*>>()
 
-    fun register(subscriber: DomainSubscriber<*>){
+    fun register(subscriber: DomainSubscriber<*>) {
         subscribers.add(subscriber)
     }
 }

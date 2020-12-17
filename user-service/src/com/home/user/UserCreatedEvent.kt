@@ -2,6 +2,6 @@ package com.home.user
 
 import com.home.messagebroker.DomainEvent
 
-data class UserCreatedEvent(override val aggregateId: String, val name: String): DomainEvent(aggregateId) {
+data class UserCreatedEvent(override val aggregateId: String, val name: String) : DomainEvent(aggregateId) {
     override fun name() = "user.created"
 }

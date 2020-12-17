@@ -1,11 +1,11 @@
 package com.home.notification.user.adapter
 
-import com.home.notification.user.domain.ConfirmationToUserSender
-import com.home.notification.user.domain.UserNotifier
 import com.home.messagebroker.DomainEvent
 import com.home.messagebroker.DomainSubscriber
+import com.home.notification.user.domain.ConfirmationToUserSender
 
-class SendConfirmationToUserOnUserCreatedEventSubscriber(private val confirmationSender: ConfirmationToUserSender) : DomainSubscriber<UserCreatedEvent>() {
+class SendConfirmationToUserOnUserCreatedEventSubscriber(private val confirmationSender: ConfirmationToUserSender) :
+    DomainSubscriber<UserCreatedEvent>() {
     override fun on(event: UserCreatedEvent) {
         confirmationSender.sendConfirmation(event.name)
     }
