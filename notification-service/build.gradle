@@ -4,7 +4,7 @@ buildscript {
     }
     
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.20"
     }
 }
 
@@ -28,11 +28,11 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "io.ktor:ktor-server-netty:$ktor_version"
-    implementation "ch.qos.logback:logback-classic:$logback_version"
-    implementation "ch.qos.logback:logback-classic:$logback_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.20"
+    implementation "io.ktor:ktor-server-netty:1.4.2"
+    implementation "ch.qos.logback:logback-classic:1.2.1"
+    implementation "ch.qos.logback:logback-classic:1.2.1"
     implementation(project(":library:message-broker"))
     implementation(project(":library:rabbitmq"))
-    testImplementation "io.ktor:ktor-server-tests:$ktor_version"
+    testImplementation "io.ktor:ktor-server-tests:1.4.2"
 }

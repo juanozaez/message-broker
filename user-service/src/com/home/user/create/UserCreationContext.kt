@@ -1,6 +1,7 @@
-package com.home.user.create.domain
+package com.home.user.create
 
 import com.home.rabbitmq.RabbitProducer
+import com.home.user.create.domain.UserCreator
 
 class UserCreationContext {
     lateinit var userCreator: UserCreator

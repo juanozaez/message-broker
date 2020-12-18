@@ -1,6 +1,6 @@
 package com.home.user
 
-import com.home.user.create.domain.UserCreationContext
+import com.home.user.create.UserCreationContext
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.request.*
