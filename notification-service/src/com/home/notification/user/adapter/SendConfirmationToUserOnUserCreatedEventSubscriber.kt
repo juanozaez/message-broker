@@ -10,7 +10,7 @@ class SendConfirmationToUserOnUserCreatedEventSubscriber(private val confirmatio
         confirmationSender.sendConfirmation(event.name)
     }
 
-    override fun name() = "user.created"
+    override fun name() = "send.confirmation.to.user.on.user.created"
     override fun subscribedEvent() = UserCreatedEvent::class
     override fun toEvent(domainEvent: DomainEvent) = domainEvent as UserCreatedEvent
 }

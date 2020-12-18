@@ -10,7 +10,7 @@ class NotifyUserOnUserCreatedEventSubscriber(private val userNotifier: UserNotif
         userNotifier.notify(event.name)
     }
 
-    override fun name() = "user.created"
+    override fun name() = "notify.user.on.user.created"
     override fun subscribedEvent() = UserCreatedEvent::class
     override fun toEvent(domainEvent: DomainEvent) = domainEvent as UserCreatedEvent
 }

@@ -15,19 +15,28 @@ class RabbitConsumerRegisterer {
 
     fun registerSubscribers() {
         DomainSubscriberRegistry.subscribers.forEach { subscriber ->
-            waitForMessages(subscriber.subscribedEvent(), subscriber.name()) {
+            waitForMessages(subscriber.subscribedEvent(), subscriber.name(), "user.created") {
                 subscriber.onEvent(it)
             }
         }
     }
 
-    private fun waitForMessages(kclass: KClass<out DomainEvent>, queueName: String, callback: (DomainEvent) -> Unit) {
+    private fun waitForMessages(
+        kclass: KClass<out DomainEvent>,
+        queueName: String,
+        topic: String,
+        callback: (DomainEvent) -> Unit
+    ) {
         val deliverCallback = DeliverCallback { _, message ->
             callback(mapper.readValue(message.body.decodeToString(), kclass.java))
         }
         val cancelCallback = CancelCallback { consumerTag ->
             println("Cancel $consumerTag")
         }
+
+        channel.exchangeDeclare("domain-events", "topic")
+        channel.queueDeclare(queueName, false, false, false, null)
+        channel.queueBind(queueName, "domain-events", topic)
         channel.basicConsume(queueName, true, deliverCallback, cancelCallback)
     }
 }
