@@ -10,4 +10,6 @@ abstract class DomainSubscriber<T> where T : DomainEvent {
 
     // TODO Work around to use specific event in subclasses' calls to on(T)
     fun onEvent(domainEvent: DomainEvent) = on(domainEvent as T)
+    fun domainEventName(): String =
+        (this.subscribedEvent().annotations.first { it.annotationClass == DomainEventName::class } as DomainEventName).name
 }

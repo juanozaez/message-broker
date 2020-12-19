@@ -15,7 +15,7 @@ class RabbitConsumerRegisterer {
 
     fun registerSubscribers() {
         DomainSubscriberRegistry.subscribers.forEach { subscriber ->
-            waitForMessages(subscriber.subscribedEvent(), subscriber.name(), "user.created") {
+            waitForMessages(subscriber.subscribedEvent(), subscriber.name(), subscriber.domainEventName()) {
                 subscriber.onEvent(it)
             }
         }
