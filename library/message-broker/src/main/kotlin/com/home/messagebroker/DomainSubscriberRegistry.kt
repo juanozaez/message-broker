@@ -4,7 +4,7 @@ object DomainSubscriberRegistry {
 
     val subscribers = mutableListOf<DomainSubscriber<*>>()
 
-    fun register(subscriber: DomainSubscriber<*>) {
-        subscribers.add(subscriber)
+    fun register(vararg subscriber: DomainSubscriber<*>) {
+        subscribers.addAll(subscriber)
     }
 }

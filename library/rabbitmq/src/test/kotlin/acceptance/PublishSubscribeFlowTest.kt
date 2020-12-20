@@ -7,6 +7,7 @@ import com.home.messagebroker.DomainSubscriberRegistry
 import com.home.rabbitmq.RabbitConsumerRegisterer
 import com.home.rabbitmq.RabbitProducer
 import org.awaitility.Awaitility.await
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import kotlin.reflect.KClass
 
@@ -15,9 +16,14 @@ class SubscriberTest {
     private val subscriber1 = TestSubscriber1()
     private val subscriber2 = TestSubscriber2()
 
+    @AfterEach
+    fun tearDown(){
+        RabbitAMPQTestUtils.deleteQueue(subscriber1.name(), subscriber2.name())
+    }
+
     @Test
     fun `it raises event and subscribers are executed`() {
-        listOf(subscriber1, subscriber2).forEach(DomainSubscriberRegistry::register)
+        DomainSubscriberRegistry.register(subscriber1, subscriber2)
         RabbitConsumerRegisterer().registerSubscribers()
 
         RabbitProducer().publish(TestDomainEvent("id"))
