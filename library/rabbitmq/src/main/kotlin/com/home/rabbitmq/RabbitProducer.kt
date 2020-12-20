@@ -11,11 +11,10 @@ class RabbitProducer : DomainEventPublisher {
     private val mappper = jacksonObjectMapper()
 
     override fun publish(event: DomainEvent) {
-        //createQueue(event.name())
         publishMessage(mappper.writeValueAsString(event), event.name())
     }
 
-    private fun publishMessage(message: String, queueName: String) {
-        channel.basicPublish("domain-events", queueName, null, message.toByteArray())
+    private fun publishMessage(message: String, topic: String) {
+        channel.basicPublish("domain-events", topic, null, message.toByteArray())
     }
 }
