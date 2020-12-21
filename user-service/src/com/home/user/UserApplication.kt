@@ -1,5 +1,7 @@
 package com.home.user
 
+import com.home.pulsar.PulsarProducer
+import com.home.rabbitmq.RabbitProducer
 import com.home.user.create.UserCreationContext
 import io.ktor.application.*
 import io.ktor.http.*
@@ -11,7 +13,8 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 @Suppress("unused")
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
-    val context = UserCreationContext()
+    val publisher = PulsarProducer()
+    val context = UserCreationContext(publisher)
     context.configureContext()
 
     routing {
