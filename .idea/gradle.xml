@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/library/kafka" />
             <option value="$PROJECT_DIR$/library/message-broker" />
             <option value="$PROJECT_DIR$/library/rabbitmq" />
             <option value="$PROJECT_DIR$/notification-service" />
