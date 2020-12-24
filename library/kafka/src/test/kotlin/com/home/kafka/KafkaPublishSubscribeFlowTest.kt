@@ -23,7 +23,7 @@ class KafkaPublishSubscribeFlowTest {
     @Test
     fun `it raises event and subscribers are executed`() {
         DomainSubscriberRegistry.register(subscriber1, subscriber2)
-        KafkaConsumerRegisterer().registerSubscribers()
+        useKafka()
 
         KafkaPublisher().publish(TestDomainEvent("id"))
 

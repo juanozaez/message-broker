@@ -4,8 +4,8 @@ import com.home.messagebroker.DomainEvent
 import com.home.messagebroker.DomainEventName
 import com.home.messagebroker.DomainEventSubscriber
 import com.home.messagebroker.DomainSubscriberRegistry
-import com.home.rabbitmq.RabbitConsumerRegisterer
-import com.home.rabbitmq.RabbitProducer
+import com.home.rabbitmq.RabbitPublisher
+import com.home.rabbitmq.useRabbit
 import org.awaitility.Awaitility.await
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -24,9 +24,9 @@ class RabbitPublishSubscribeFlowTest {
     @Test
     fun `it raises event and subscribers are executed`() {
         DomainSubscriberRegistry.register(subscriber1, subscriber2)
-        RabbitConsumerRegisterer().registerSubscribers()
+        useRabbit()
 
-        RabbitProducer().publish(TestDomainEvent("id"))
+        RabbitPublisher().publish(TestDomainEvent("id"))
 
         await().until {
             subscriber1.executions == 1 && subscriber2.executions == 1

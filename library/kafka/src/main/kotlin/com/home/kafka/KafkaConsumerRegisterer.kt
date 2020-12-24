@@ -12,7 +12,7 @@ import java.time.Duration
 import java.util.*
 import kotlin.reflect.KClass
 
-class KafkaConsumerRegisterer {
+private class KafkaConsumerRegisterer {
     private val mapper = jacksonObjectMapper()
 
     fun registerSubscribers() {
@@ -48,3 +48,5 @@ class KafkaConsumerRegisterer {
         }
     }
 }
+
+fun useKafka() = KafkaConsumerRegisterer().registerSubscribers()

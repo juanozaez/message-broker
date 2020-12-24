@@ -5,7 +5,7 @@ import com.home.messagebroker.DomainEvent
 import com.home.messagebroker.DomainEventPublisher
 import com.rabbitmq.client.ConnectionFactory
 
-class RabbitProducer : DomainEventPublisher {
+class RabbitPublisher : DomainEventPublisher {
     private val connection = ConnectionFactory().newConnection("amqp://guest:guest@localhost:5672/")
     private val channel = connection.createChannel()
     private val mappper = jacksonObjectMapper()

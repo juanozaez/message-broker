@@ -8,7 +8,7 @@ import com.rabbitmq.client.ConnectionFactory
 import com.rabbitmq.client.DeliverCallback
 import kotlin.reflect.KClass
 
-class RabbitConsumerRegisterer {
+private class RabbitConsumerRegisterer {
     private val connection = ConnectionFactory().newConnection("amqp://guest:guest@localhost:5672/")
     private val channel = connection.createChannel()
     private val mapper = jacksonObjectMapper()
@@ -40,3 +40,5 @@ class RabbitConsumerRegisterer {
         channel.basicConsume(queueName, true, deliverCallback, cancelCallback)
     }
 }
+
+fun useRabbit() = RabbitConsumerRegisterer().registerSubscribers()
