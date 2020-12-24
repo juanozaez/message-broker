@@ -1,7 +1,7 @@
 package com.home.notification
 
+import com.home.kafka.KafkaConsumerRegisterer
 import com.home.notification.user.UserContext
-import com.home.rabbitmq.RabbitConsumerRegisterer
 import io.ktor.application.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -13,5 +13,8 @@ fun Application.module(testing: Boolean = false) {
     UserContext().configureContext()
 
     // Rabbit MQ
-    RabbitConsumerRegisterer().registerSubscribers()
+    //RabbitConsumerRegisterer().registerSubscribers()
+
+    // Kafka
+    KafkaConsumerRegisterer().registerSubscribers()
 }

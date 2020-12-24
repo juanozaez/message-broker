@@ -8,6 +8,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.12.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0")
     implementation("org.apache.kafka:kafka-clients:2.7.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")

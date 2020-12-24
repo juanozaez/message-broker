@@ -2,7 +2,7 @@ package com.home.messagebroker
 
 import kotlin.reflect.KClass
 
-abstract class DomainSubscriber<T> where T : DomainEvent {
+abstract class DomainEventSubscriber<T> where T : DomainEvent {
     abstract fun on(event: T)
     abstract fun subscribedEvent(): KClass<T>
     abstract fun name(): String
