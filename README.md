@@ -25,11 +25,14 @@ Project consisting of several microservices communicating using an asynchronous 
 It can be run using different message brokers
 
 - Rabbit MQ
+- Kafka
+
+![../main/diagram/img.png](rabbit.png)
 
 ## Set up
 
 - Start docker
-- run docker-compose start
+- run docker-compose up -d
 - Start both projects:
     - Run UserApplication.kt
     - Run NotificationApplication.kt
