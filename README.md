@@ -27,7 +27,7 @@ It can be run using different message brokers
 - Rabbit MQ
 - Kafka
 
-![../main/diagram/img.png](rabbit.png)
+![/diagram/img.png](rabbit.png)
 
 ## Set up
 
